@@ -7,13 +7,14 @@ import {
   Outlet,
 } from 'react-router-dom';
 import * as API from 'services/api';
+
 import {
   Container,
   Button,
   List,
   Item,
   LinkWrapper,
-} from './MovieDetailsPage.styled';
+} from '../components/MovieDetailsPage/MovieDetailsPage.styled';
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);

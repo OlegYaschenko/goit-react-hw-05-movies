@@ -1,18 +1,18 @@
 import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
-const Layout = lazy(() => import('components/Layout/Layout'));
-const HomePage = lazy(() => import('components/HomePage/HomePage'));
-const Movies = lazy(() => import('components/Movies/Movies'));
-const MovieDetailsPage = lazy(() =>
-  import('components/MovieDetailsPage/MovieDetailsPage')
-);
-const Cast = lazy(() => import('components/Cast/Cast'));
-const Reviews = lazy(() => import('components/Reviews/Reviews'));
-const ErrorUrl = lazy(() => import('components/ErrorUrl/ErrorUrl'));
+import Navigation from 'components/Navigation/Navigation';
+const Layout = lazy(() => import('views/Layout'));
+const HomePage = lazy(() => import('views/HomePage'));
+const Movies = lazy(() => import('views/Movies'));
+const MovieDetailsPage = lazy(() => import('views/MovieDetailsPage'));
+const Cast = lazy(() => import('views/Cast'));
+const Reviews = lazy(() => import('views/Reviews'));
+const ErrorUrl = lazy(() => import('views/ErrorUrl'));
 
 export const App = () => {
   return (
     <>
+      <Navigation />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/" element={<Layout />}>
