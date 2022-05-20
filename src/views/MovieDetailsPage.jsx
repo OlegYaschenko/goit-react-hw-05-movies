@@ -1,10 +1,11 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense, lazy } from 'react';
 import {
+  Routes,
+  Route,
   useParams,
   useNavigate,
   useLocation,
   Link,
-  Outlet,
 } from 'react-router-dom';
 import * as API from 'services/api';
 
@@ -15,6 +16,9 @@ import {
   Item,
   LinkWrapper,
 } from '../components/MovieDetailsPage/MovieDetailsPage.styled';
+
+const Cast = lazy(() => import('views/Cast'));
+const Reviews = lazy(() => import('views/Reviews'));
 
 const MovieDetailsPage = () => {
   const [movie, setMovie] = useState(null);
@@ -69,7 +73,12 @@ const MovieDetailsPage = () => {
           <Link to="cast">Cast</Link>
           <Link to="reviews">Reviews</Link>
         </LinkWrapper>
-        <Outlet />
+        <Suspense fallback={<p>Loading...</p>}>
+          <Routes>
+            <Route path="cast" element={<Cast />} />
+            <Route path="reviews" element={<Reviews />} />
+          </Routes>
+        </Suspense>
       </>
     )
   );
